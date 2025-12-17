@@ -2,7 +2,7 @@
 
 ![ci](https://github.com/tlonny/astroparse/actions/workflows/check.yml/badge.svg)
 
-A minimal, zero-dependency parser combinator library for building fully-typed parsers.
+A minimal, zero dependency, fully-typed parser combinator library.
 
 ## Installation
 
@@ -22,7 +22,7 @@ import {
     parserText,
     parserWhitespace,
     parserAtomMany
-} from "@src/index"
+} from "astroparse"
 
 const parserName = parserAtomMapValue(
     parserAtomMany(
