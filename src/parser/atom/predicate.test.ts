@@ -16,7 +16,7 @@ test("parserAtomPredicate propagates inner parser errors", () => {
         throw new Error("Unexpected success")
     }
 
-    expect(result.error).toEqual({ errorType: "PARSER_ATOM_TOKEN::INPUT_END" })
+    expect(result.error).toEqual({ errorType: "ASTROPARSE::PARSER_ATOM_TOKEN::INPUT_END" })
     expect(result.input.cursor).toEqual(1)
 })
 

@@ -20,7 +20,7 @@ test("parserAtomEnd errors when not at the end of the input", () => {
     }
 
     expect(result.error).toEqual({
-        errorType: "PARSER_ATOM_END::INPUT_NOT_END"
+        errorType: "ASTROPARSE::PARSER_ATOM_END::INPUT_NOT_END"
     })
 
     expect(result.input.cursor).toEqual(0)

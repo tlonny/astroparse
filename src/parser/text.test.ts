@@ -8,7 +8,7 @@ const INPUT : ParseInput = {
 }
 
 test("parserText correctly parses a word", () => {
-    const parser = parserText({ word: "hell" })
+    const parser = parserText("hell")
     const result = parser(INPUT)
 
     expect(result.success).toBe(true)
@@ -21,7 +21,7 @@ test("parserText correctly parses a word", () => {
 })
 
 test("parserText errors if the word doesn't match - consuming no input", () => {
-    const parser = parserText({ word: "helg" })
+    const parser = parserText("helg")
     const result = parser(INPUT)
 
     expect(result.success).toBe(false)
@@ -31,14 +31,14 @@ test("parserText errors if the word doesn't match - consuming no input", () => {
 
     expect(result.input.cursor).toEqual(0)
     expect(result.error).toEqual({
-        errorType: "PARSER_TEXT::TOKEN_INCORRECT",
+        errorType: "ASTROPARSE::PARSER_TEXT::TOKEN_INCORRECT",
         word: "helg",
         position: 3
     })
 })
 
 test("parserText errors if the input runs out - consumign no input", () => {
-    const parser = parserText({ word: "helloo" })
+    const parser = parserText("helloo")
     const result = parser(INPUT)
 
     expect(result.success).toBe(false)
@@ -48,7 +48,7 @@ test("parserText errors if the input runs out - consumign no input", () => {
 
     expect(result.input.cursor).toEqual(0)
     expect(result.error).toEqual({
-        errorType: "PARSER_TEXT::TOKEN_INCORRECT",
+        errorType: "ASTROPARSE::PARSER_TEXT::TOKEN_INCORRECT",
         word: "helloo",
         position: 5
     })

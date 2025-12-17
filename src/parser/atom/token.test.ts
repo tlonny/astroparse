@@ -20,7 +20,7 @@ test("parserAtomToken errors when at the end of the input", () => {
     }
 
     expect(result.error).toEqual({
-        errorType: "PARSER_ATOM_TOKEN::INPUT_END"
+        errorType: "ASTROPARSE::PARSER_ATOM_TOKEN::INPUT_END"
     })
 
     expect(result.input.cursor).toEqual(3)

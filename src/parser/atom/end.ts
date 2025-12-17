@@ -1,7 +1,7 @@
 import type { ParseInput, ParseResult } from "@src/type"
 
 export type ParserAtomEndParseResultErrorInputNotEnd = {
-    errorType: "PARSER_ATOM_END::INPUT_NOT_END"
+    errorType: "ASTROPARSE::PARSER_ATOM_END::INPUT_NOT_END"
 }
 
 export const parserAtomEnd = (
@@ -17,7 +17,7 @@ export const parserAtomEnd = (
 
     return {
         success: false,
-        error: { errorType: "PARSER_ATOM_END::INPUT_NOT_END" },
+        error: { errorType: "ASTROPARSE::PARSER_ATOM_END::INPUT_NOT_END" },
         input: input
     }
 }

@@ -7,37 +7,37 @@ import { parserAtomTry } from "@src/parser/atom/try"
 import type { Parser } from "@src/type"
 
 export type ParserTextParseResultErrorTokenIncorrect = {
-    errorType: "PARSER_TEXT::TOKEN_INCORRECT",
+    errorType: "ASTROPARSE::PARSER_TEXT::TOKEN_INCORRECT",
     word: string,
     position: number
 }
 
 const errorBuild = (position : number, word: string) : ParserTextParseResultErrorTokenIncorrect => ({
-    errorType: "PARSER_TEXT::TOKEN_INCORRECT",
+    errorType: "ASTROPARSE::PARSER_TEXT::TOKEN_INCORRECT",
     position: position,
     word: word
 })
 
-export const parserText = (params : {
+export const parserText = (
     word: string
-}) : Parser<string, ParserTextParseResultErrorTokenIncorrect> => parserAtomMapValue(
+) : Parser<string, ParserTextParseResultErrorTokenIncorrect> => parserAtomMapValue(
     // If the parse fails halfway through, unwind the parsed input to avoid a fatal error
     parserAtomTry(
         // Parse each character of the text in sequence
         parserAtomSequence(
-            [...params.word]
+            [...word]
             // Parse the next token (character) and check it matches the corresponding text character
                 .map((char, cursor) => parserAtomPredicate(
                     parserAtomMapError(
                         parserAtomToken,
-                        () => errorBuild(cursor, params.word)
+                        () => errorBuild(cursor, word)
                     ),
                     (c) => c === char
                         ? { success: true }
-                        : { success: false, error: errorBuild(cursor, params.word) }
+                        : { success: false, error: errorBuild(cursor, word) }
                 ))
         )
     ),
     // If the parse is succesful, return the parsed word
-    () => params.word,
+    () => word,
 )
