@@ -10,7 +10,7 @@ export type ParserAtomPredicatePredicateFn<TValue, TErrorPred> = (
 
 export const parserAtomPredicate = <TValue, TError, TErrorPred>(
     parser: Parser<TValue, TError>,
-    predicateFn: ParserAtomPredicatePredicateFn<TValue, TErrorPred>
+    predicateFn: (value : TValue) => ParserAtomPredicatePredicateResult<TErrorPred>
 ) => (input : ParseInput) : ParseResult<TValue, TError | TErrorPred> => {
         const result = parser(input)
         if (!result.success) {

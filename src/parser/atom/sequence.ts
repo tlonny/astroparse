@@ -1,6 +1,6 @@
 import type { Parser, ParseInput, ParseResult } from "@src/type"
 
-type ParserAtomSequenceParseResult<TParsers extends Parser<any, any>[]> = ParseResult<
+export type ParserAtomSequenceParseResult<TParsers extends Parser<any, any>[]> = ParseResult<
    { [TIndex in keyof TParsers]: TParsers[TIndex] extends Parser<infer TValue, any> ? TValue : never },
    TParsers[number] extends Parser<any, infer TError> ? TError : never
 >

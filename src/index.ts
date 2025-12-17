@@ -6,7 +6,10 @@ export type {
     Parser
 } from "@src/type"
 
-export { parserAtomEither } from "@src/parser/atom/either"
+export {
+    parserAtomEither,
+    type ParserAtomEitherParseResult
+} from "@src/parser/atom/either"
 
 export {
     parserAtomEnd,
@@ -24,7 +27,10 @@ export {
     type ParserAtomPredicatePredicateResult
 } from "@src/parser/atom/predicate"
 
-export { parserAtomSequence } from "@src/parser/atom/sequence"
+export {
+    parserAtomSequence,
+    type ParserAtomSequenceParseResult
+} from "@src/parser/atom/sequence"
 
 export {
     parserAtomToken,

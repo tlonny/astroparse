@@ -1,10 +1,9 @@
 import type { Parser, ParseInput, ParseResult } from "@src/type"
 
-type ParserAtomEitherParseResult<TParsers extends Parser<any, any>[]> = ParseResult<
+export type ParserAtomEitherParseResult<TParsers extends Parser<any, any>[]> = ParseResult<
    TParsers[number] extends Parser<infer TValue, any> ? TValue : never,
    TParsers[number] extends Parser<any, infer TError> ? TError : never
 >
-
 export const parserAtomEither = <const TParsers extends Parser<any, any>[]>(
     parsers: TParsers
 ) => (input : ParseInput) : ParserAtomEitherParseResult<TParsers> => {
