@@ -1,6 +1,6 @@
 {
   "name": "astroparse",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "repository": {
     "url": "https://github.com/tlonny/astroparse"
