@@ -13,7 +13,8 @@ export {
 
 export {
     parserAtomEnd,
-    type ParserAtomEndParseResultErrorInputNotEnd
+    type ParserAtomEndParseResultErrorInputNotEnd,
+    type ParserAtomEndParseResultError
 } from "@src/parser/atom/end"
 
 export { parserAtomError } from "@src/parser/atom/error"
@@ -34,7 +35,8 @@ export {
 
 export {
     parserAtomCharacter,
-    type ParserAtomCharacterParseResultErrorInputEnd
+    type ParserAtomCharacterParseResultErrorInputEnd,
+    type ParserAtomCharacterParseResultError
 } from "@src/parser/atom/character"
 
 export { parserAtomTry } from "@src/parser/atom/try"
@@ -42,7 +44,8 @@ export { parserAtomValue } from "@src/parser/atom/value"
 
 export {
     parserText,
-    type ParserTextParseResultErrorCharacterInvalid
+    type ParserTextParseResultErrorCharacterInvalid,
+    type ParserTextParseResultError
 } from "@src/parser/text"
 
 export { parserWhitespace } from "@src/parser/whitespace"

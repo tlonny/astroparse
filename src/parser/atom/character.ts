@@ -4,9 +4,12 @@ export type ParserAtomCharacterParseResultErrorInputEnd = {
     errorType: "ASTROPARSE::PARSER::ATOM::CHARACTER::INPUT_END"
 }
 
+export type ParserAtomCharacterParseResultError =
+    | ParserAtomCharacterParseResultErrorInputEnd
+
 export const parserAtomCharacter = (
     input : ParseInput
-) : ParseResult<string, ParserAtomCharacterParseResultErrorInputEnd> => {
+) : ParseResult<string, ParserAtomCharacterParseResultError> => {
     if (input.cursor >= input.data.length) {
         return {
             success: false,

@@ -4,9 +4,12 @@ export type ParserAtomEndParseResultErrorInputNotEnd = {
     errorType: "ASTROPARSE::PARSER::ATOM::END::INPUT_NOT_END"
 }
 
+export type ParserAtomEndParseResultError =
+    | ParserAtomEndParseResultErrorInputNotEnd
+
 export const parserAtomEnd = (
     input : ParseInput
-) : ParseResult<null, ParserAtomEndParseResultErrorInputNotEnd> => {
+) : ParseResult<null, ParserAtomEndParseResultError> => {
     if (input.cursor >= input.data.length) {
         return {
             success: true,
