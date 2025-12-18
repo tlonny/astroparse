@@ -32,7 +32,7 @@ test("parserText errors if the word doesn't match - consuming no input", () => {
     expect(result.input.cursor).toEqual(0)
     expect(result.error).toEqual({
         errorType: "ASTROPARSE::PARSER::TEXT::CHARACTER_INVALID",
-        word: "helg"
+        text: "helg"
     })
 })
 

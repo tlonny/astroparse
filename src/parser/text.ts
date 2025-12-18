@@ -7,7 +7,7 @@ import type { Parser } from "@src/type"
 
 export type ParserTextParseResultErrorCharacterInvalid = {
     errorType: "ASTROPARSE::PARSER::TEXT::CHARACTER_INVALID",
-    word: string,
+    text: string,
 }
 
 export type ParserTextParseResultError =
@@ -15,22 +15,22 @@ export type ParserTextParseResultError =
     | ParserAtomCharacterParseResultErrorInputEnd
 
 export const parserText = (
-    word: string
+    text: string
 ) : Parser<string, ParserTextParseResultError> => parserAtomMapValue(
     // If the parse fails halfway through, unwind the parsed input to avoid a fatal error
     parserAtomTry(
         // Parse each character of the text in sequence
         parserAtomSequence(
-            [...word]
+            [...text]
             // Parse the next character and check it matches the corresponding text character
                 .map((char) => parserAtomPredicate(
                     parserAtomCharacter,
                     (c) : ParserAtomPredicatePredicateResult<ParserTextParseResultErrorCharacterInvalid> => c === char
                         ? { success: true }
-                        : { success: false, error: { errorType: "ASTROPARSE::PARSER::TEXT::CHARACTER_INVALID", word } }
+                        : { success: false, error: { errorType: "ASTROPARSE::PARSER::TEXT::CHARACTER_INVALID", text } }
                 ))
         )
     ),
     // If the parse is succesful, return the parsed word
-    () => word,
+    () => text,
 )
