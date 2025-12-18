@@ -122,4 +122,7 @@ AstroParse provides a minimal (but arguably "complete") set of generic, atomic p
 AstroParse also provides a small set of non-atomic "utility/common" parsers. You're encouraged to inspect the source for these parsers as it is a useful resource when it comes to composing your own parsers:
 
 - `parserText`: parses a specified text string exactly as-is. Will not consume input on failure.
+- `parserAlpha`: parses a single alphabetical character (A-Z or a-z). Will not consume input on failure.
+- `parserDigit`: parses a single numeric digit (0-9). Will not consume input on failure.
+- `parserNewline`: parses a newline sequence, supporting both `\n` and `\r\n`. Will not consume input on failure.
 - `parserWhitespace`: parses a (potentially empty) region of whitespace. Will never return an error.

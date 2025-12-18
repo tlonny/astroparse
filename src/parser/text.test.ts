@@ -1,6 +1,6 @@
 import { test, expect } from "bun:test"
-import type { ParseInput } from "@src/type"
-import { parserText } from "@src/parser/text"
+import type { ParseInput, ParseResultError, ParseResultValue } from "@src/type"
+import { parserText, type ParserTextParseResultError } from "@src/parser/text"
 
 const INPUT : ParseInput = {
     data: "hello",
@@ -9,42 +9,33 @@ const INPUT : ParseInput = {
 
 test("parserText correctly parses a word", () => {
     const parser = parserText("hell")
-    const result = parser(INPUT)
+    const result = parser(INPUT) as ParseResultValue<string>
 
     expect(result.success).toBe(true)
-    if (!result.success) {
-        throw new Error("Unexpected success")
-    }
-
     expect(result.input.cursor).toEqual(4)
     expect(result.value).toEqual("hell")
 })
 
 test("parserText errors if the word doesn't match - consuming no input", () => {
     const parser = parserText("helg")
-    const result = parser(INPUT)
+    const result = parser(INPUT) as ParseResultError<ParserTextParseResultError>
 
     expect(result.success).toBe(false)
-    if (result.success) {
-        throw new Error("Unexpected success")
-    }
-
     expect(result.input.cursor).toEqual(0)
     expect(result.error).toEqual({
-        errorType: "ASTROPARSE::PARSER::TEXT::CHARACTER_INVALID",
+        errorType: "ASTROPARSE::PARSER::TEXT::TEXT_INVALID",
         text: "helg"
     })
 })
 
 test("parserText errors if the input runs out - consuming no input", () => {
     const parser = parserText("helloo")
-    const result = parser(INPUT)
+    const result = parser(INPUT) as ParseResultError<ParserTextParseResultError>
 
-    expect(result.success).toBe(false)
-    if (result.success) {
-        throw new Error("Unexpected success")
-    }
-
+    expect(result.success).toEqual(false)
     expect(result.input.cursor).toEqual(0)
-    expect(result.error).toEqual({ errorType: "ASTROPARSE::PARSER::ATOM::CHARACTER::INPUT_END" })
+    expect(result.error).toEqual({
+        errorType: "ASTROPARSE::PARSER::TEXT::TEXT_INVALID",
+        text: "helloo"
+    })
 })

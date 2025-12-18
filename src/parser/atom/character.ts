@@ -1,11 +1,8 @@
 import type { ParseInput, ParseResult } from "@src/type"
 
-export type ParserAtomCharacterParseResultErrorInputEnd = {
+export type ParserAtomCharacterParseResultError = {
     errorType: "ASTROPARSE::PARSER::ATOM::CHARACTER::INPUT_END"
 }
-
-export type ParserAtomCharacterParseResultError =
-    | ParserAtomCharacterParseResultErrorInputEnd
 
 export const parserAtomCharacter = (
     input : ParseInput
