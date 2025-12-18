@@ -33,16 +33,16 @@ export {
 } from "@src/parser/atom/sequence"
 
 export {
-    parserAtomToken,
-    type ParserAtomTokenParseResultErrorInputEnd
-} from "@src/parser/atom/token"
+    parserAtomCharacter,
+    type ParserAtomCharacterParseResultErrorInputEnd
+} from "@src/parser/atom/character"
 
 export { parserAtomTry } from "@src/parser/atom/try"
 export { parserAtomValue } from "@src/parser/atom/value"
 
 export {
     parserText,
-    type ParserTextParseResultErrorTokenInvalid
+    type ParserTextParseResultErrorCharacterInvalid
 } from "@src/parser/text"
 
 export { parserWhitespace } from "@src/parser/whitespace"

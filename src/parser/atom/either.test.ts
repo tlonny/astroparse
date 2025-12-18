@@ -2,7 +2,7 @@ import { parserAtomEither } from "@src/parser/atom/either"
 import { parserAtomError } from "@src/parser/atom/error"
 import { parserAtomMapValue } from "@src/parser/atom/map/value"
 import { parserAtomSequence } from "@src/parser/atom/sequence"
-import { parserAtomToken } from "@src/parser/atom/token"
+import { parserAtomCharacter } from "@src/parser/atom/character"
 import { parserAtomValue } from "@src/parser/atom/value"
 import type { ParseInput } from "@src/type"
 import { test, expect } from "bun:test"
@@ -14,9 +14,9 @@ const INPUT : ParseInput = {
 
 test("parserAtomEither selects the first successful parse", () => {
     const parser = parserAtomEither([
-        parserAtomToken,
-        parserAtomToken,
-        parserAtomMapValue(parserAtomToken, () => 5)
+        parserAtomCharacter,
+        parserAtomCharacter,
+        parserAtomMapValue(parserAtomCharacter, () => 5)
     ])
 
     const result = parser(INPUT)
@@ -32,8 +32,8 @@ test("parserAtomEither selects the first successful parse", () => {
 test("parserAtomEither selects the first successful parse", () => {
     const parser = parserAtomEither([
         parserAtomError("error"),
-        parserAtomToken,
-        parserAtomMapValue(parserAtomToken, () => 5)
+        parserAtomCharacter,
+        parserAtomMapValue(parserAtomCharacter, () => 5)
     ])
 
     const result = parser(INPUT)
@@ -66,7 +66,7 @@ test("parserAtomEither returns the last error if all parsers error", () => {
 test("parserAtomEither errors if an errored parser consumes input", () => {
     const parser = parserAtomEither([
         parserAtomSequence([
-            parserAtomToken,
+            parserAtomCharacter,
             parserAtomError("errorFirst")
         ]),
         parserAtomValue("yo")

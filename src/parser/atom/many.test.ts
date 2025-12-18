@@ -1,6 +1,6 @@
 import { parserAtomMany } from "@src/parser/atom/many"
 import { parserAtomPredicate } from "@src/parser/atom/predicate"
-import { parserAtomToken } from "@src/parser/atom/token"
+import { parserAtomCharacter } from "@src/parser/atom/character"
 import { parserAtomTry } from "@src/parser/atom/try"
 import type { ParseInput } from "@src/type"
 import { test, expect } from "bun:test"
@@ -16,7 +16,7 @@ test("parserAtomMany collects results until the inner parser errors", () => {
     const parser = parserAtomMany(
         parserAtomTry(
             parserAtomPredicate(
-                parserAtomToken,
+                parserAtomCharacter,
                 (x) => x == "A"
                     ? { success: true }
                     : { success: false, error: ERROR }
@@ -37,7 +37,7 @@ test("parserAtomMany collects results until the inner parser errors", () => {
 test("parserAtomMany errors if the inner parser errors and consumes input", () => {
     const parser = parserAtomMany(
         parserAtomPredicate(
-            parserAtomToken,
+            parserAtomCharacter,
             (x) => x == "A"
                 ? { success: true }
                 : { success: false, error: ERROR }

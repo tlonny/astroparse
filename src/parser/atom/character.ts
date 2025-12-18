@@ -1,16 +1,16 @@
 import type { ParseInput, ParseResult } from "@src/type"
 
-export type ParserAtomTokenParseResultErrorInputEnd = {
-    errorType: "ASTROPARSE::PARSER::ATOM::TOKEN::INPUT_END"
+export type ParserAtomCharacterParseResultErrorInputEnd = {
+    errorType: "ASTROPARSE::PARSER::ATOM::CHARACTER::INPUT_END"
 }
 
-export const parserAtomToken = (
+export const parserAtomCharacter = (
     input : ParseInput
-) : ParseResult<string, ParserAtomTokenParseResultErrorInputEnd> => {
+) : ParseResult<string, ParserAtomCharacterParseResultErrorInputEnd> => {
     if (input.cursor >= input.data.length) {
         return {
             success: false,
-            error: { errorType: "ASTROPARSE::PARSER::ATOM::TOKEN::INPUT_END" },
+            error: { errorType: "ASTROPARSE::PARSER::ATOM::CHARACTER::INPUT_END" },
             input: input
         }
     }

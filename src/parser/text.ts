@@ -1,22 +1,22 @@
 import { parserAtomMapValue } from "@src/parser/atom/map/value"
 import { parserAtomPredicate } from "@src/parser/atom/predicate"
 import { parserAtomSequence } from "@src/parser/atom/sequence"
-import { parserAtomToken, type ParserAtomTokenParseResultErrorInputEnd } from "@src/parser/atom/token"
+import { parserAtomCharacter, type ParserAtomCharacterParseResultErrorInputEnd } from "@src/parser/atom/character"
 import { parserAtomTry } from "@src/parser/atom/try"
 import type { Parser } from "@src/type"
 
-export type ParserTextParseResultErrorTokenInvalid = {
-    errorType: "ASTROPARSE::PARSER::TEXT::TOKEN_INVALID",
+export type ParserTextParseResultErrorCharacterInvalid = {
+    errorType: "ASTROPARSE::PARSER::TEXT::CHARACTER_INVALID",
     word: string,
     position: number
 }
 
 export type ParserTextParseResultError =
-    | ParserTextParseResultErrorTokenInvalid
-    | ParserAtomTokenParseResultErrorInputEnd
+    | ParserTextParseResultErrorCharacterInvalid
+    | ParserAtomCharacterParseResultErrorInputEnd
 
-const errorBuild = (position : number, word: string) : ParserTextParseResultErrorTokenInvalid => ({
-    errorType: "ASTROPARSE::PARSER::TEXT::TOKEN_INVALID",
+const errorBuild = (position : number, word: string) : ParserTextParseResultErrorCharacterInvalid => ({
+    errorType: "ASTROPARSE::PARSER::TEXT::CHARACTER_INVALID",
     position: position,
     word: word
 })
@@ -29,9 +29,9 @@ export const parserText = (
         // Parse each character of the text in sequence
         parserAtomSequence(
             [...word]
-            // Parse the next token (character) and check it matches the corresponding text character
+            // Parse the next character and check it matches the corresponding text character
                 .map((char, cursor) => parserAtomPredicate(
-                    parserAtomToken,
+                    parserAtomCharacter,
                     (c) => c === char
                         ? { success: true }
                         : { success: false, error: errorBuild(cursor, word) }

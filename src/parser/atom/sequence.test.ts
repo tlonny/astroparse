@@ -1,7 +1,7 @@
 import { parserAtomSequence } from "@src/parser/atom/sequence"
 import { parserAtomError } from "@src/parser/atom/error"
 import { parserAtomMapValue } from "@src/parser/atom/map/value"
-import { parserAtomToken } from "@src/parser/atom/token"
+import { parserAtomCharacter } from "@src/parser/atom/character"
 import type { ParseInput } from "@src/type"
 import { test, expect } from "bun:test"
 
@@ -12,9 +12,9 @@ const INPUT : ParseInput = {
 
 test("parserAtomSequence parses in sequence", () => {
     const parser = parserAtomSequence([
-        parserAtomToken,
-        parserAtomToken,
-        parserAtomMapValue(parserAtomToken, () => 5)
+        parserAtomCharacter,
+        parserAtomCharacter,
+        parserAtomMapValue(parserAtomCharacter, () => 5)
     ])
 
     const result = parser(INPUT)
@@ -29,8 +29,8 @@ test("parserAtomSequence parses in sequence", () => {
 
 test("parserAtomSequence returns the first error it encounters", () => {
     const parser = parserAtomSequence([
-        parserAtomToken,
-        parserAtomToken,
+        parserAtomCharacter,
+        parserAtomCharacter,
         parserAtomError("boom")
     ])
 

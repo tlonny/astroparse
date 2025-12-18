@@ -1,9 +1,9 @@
 import { parserAtomPredicate } from "@src/parser/atom/predicate"
-import { parserAtomToken } from "@src/parser/atom/token"
+import { parserAtomCharacter } from "@src/parser/atom/character"
 import { test, expect } from "bun:test"
 
 const predicateIsA = parserAtomPredicate(
-    parserAtomToken,
+    parserAtomCharacter,
     (value) => value === "a"
         ? { success: true }
         : { success: false, error: { errorType: "NOT_A" } }
@@ -16,7 +16,7 @@ test("parserAtomPredicate propagates inner parser errors", () => {
         throw new Error("Unexpected success")
     }
 
-    expect(result.error).toEqual({ errorType: "ASTROPARSE::PARSER::ATOM::TOKEN::INPUT_END" })
+    expect(result.error).toEqual({ errorType: "ASTROPARSE::PARSER::ATOM::CHARACTER::INPUT_END" })
     expect(result.input.cursor).toEqual(1)
 })
 

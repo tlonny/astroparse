@@ -1,12 +1,12 @@
 import { parserAtomMapError } from "@src/parser/atom/map/error"
-import { parserAtomToken } from "@src/parser/atom/token"
+import { parserAtomCharacter } from "@src/parser/atom/character"
 import { test, expect } from "bun:test"
 
 const INPUT = { data: "xy", cursor: 0 }
 const MAP_FN = () => "MAPPED"
 
 test("parserAtomMapError returns original success result unchanged", () => {
-    const parser = parserAtomMapError(parserAtomToken, MAP_FN)
+    const parser = parserAtomMapError(parserAtomCharacter, MAP_FN)
     const result = parser(INPUT)
     expect(result.success).toBe(true)
     if (!result.success) {
@@ -18,7 +18,7 @@ test("parserAtomMapError returns original success result unchanged", () => {
 })
 
 test("parserAtomMapError maps error when parse fails", () => {
-    const parser = parserAtomMapError(parserAtomToken, MAP_FN)
+    const parser = parserAtomMapError(parserAtomCharacter, MAP_FN)
     const result = parser({ ...INPUT, cursor: 2 })
     expect(result.success).toBe(false)
     if (result.success) {

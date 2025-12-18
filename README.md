@@ -16,7 +16,7 @@ npm install astroparse
 import {
     parserAtomMapValue,
     parserAtomSequence,
-    parserAtomToken,
+    parserAtomCharacter,
     parserAtomTry,
     parserAtomPredicate,
     parserText,
@@ -28,7 +28,7 @@ const parserName = parserAtomMapValue(
     parserAtomMany(
         parserAtomTry(
             parserAtomPredicate(
-                parserAtomToken,
+                parserAtomCharacter,
                 c => /[a-zA-Z]/.test(c)
                     ? { success: true }
                     : { success: false, error: null }
@@ -104,8 +104,8 @@ Thus it is possible to create your own custom parsers by directly implementing f
 
 AstroParse provides a minimal (but arguably "complete") set of generic, atomic parsers:
 
- - `parserAtomToken`: consumes and returns the next character of input. Errors if at the end of the input.
- - `parserAtomEnd`: complements `parserAtomToken` - returns a null if at the end of the input. Errors otherwise.
+ - `parserAtomCharacter`: consumes and returns the next input character. Errors if at the end of the input.
+ - `parserAtomEnd`: complements `parserAtomCharacter` - returns a null if at the end of the input. Errors otherwise.
  - `parserAtomValue`: always "parses" a specified value without consuming any input.
  - `parserAtomError`: always returns a specified error without consuming any input.
  - `parserAtomPredicate`: wraps an existing parser, checking the result against a predicate function and erroring if the predicate fails.
