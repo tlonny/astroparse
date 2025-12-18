@@ -31,7 +31,7 @@ test("parserText errors if the word doesn't match - consuming no input", () => {
 
     expect(result.input.cursor).toEqual(0)
     expect(result.error).toEqual({
-        errorType: "ASTROPARSE::PARSER_TEXT::TOKEN_INCORRECT",
+        errorType: "ASTROPARSE::PARSER::TEXT::TOKEN_INCORRECT",
         word: "helg",
         position: 3
     })
@@ -48,7 +48,7 @@ test("parserText errors if the input runs out - consumign no input", () => {
 
     expect(result.input.cursor).toEqual(0)
     expect(result.error).toEqual({
-        errorType: "ASTROPARSE::PARSER_TEXT::TOKEN_INCORRECT",
+        errorType: "ASTROPARSE::PARSER::TEXT::TOKEN_INCORRECT",
         word: "helloo",
         position: 5
     })

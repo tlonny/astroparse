@@ -25,6 +25,6 @@ test("parserAtomMapValue returns error unchanged when parse fails", () => {
         throw new Error("Unexpected success")
     }
 
-    expect(result.error).toEqual({ errorType: "ASTROPARSE::PARSER_ATOM_TOKEN::INPUT_END" })
+    expect(result.error).toEqual({ errorType: "ASTROPARSE::PARSER::ATOM::TOKEN::INPUT_END" })
     expect(result.input.cursor).toEqual(2)
 })

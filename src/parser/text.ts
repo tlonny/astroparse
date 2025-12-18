@@ -7,13 +7,13 @@ import { parserAtomTry } from "@src/parser/atom/try"
 import type { Parser } from "@src/type"
 
 export type ParserTextParseResultErrorTokenIncorrect = {
-    errorType: "ASTROPARSE::PARSER_TEXT::TOKEN_INCORRECT",
+    errorType: "ASTROPARSE::PARSER::TEXT::TOKEN_INCORRECT",
     word: string,
     position: number
 }
 
 const errorBuild = (position : number, word: string) : ParserTextParseResultErrorTokenIncorrect => ({
-    errorType: "ASTROPARSE::PARSER_TEXT::TOKEN_INCORRECT",
+    errorType: "ASTROPARSE::PARSER::TEXT::TOKEN_INCORRECT",
     position: position,
     word: word
 })
