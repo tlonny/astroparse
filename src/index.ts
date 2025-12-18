@@ -42,7 +42,7 @@ export { parserAtomValue } from "@src/parser/atom/value"
 
 export {
     parserText,
-    type ParserTextParseResultErrorTokenIncorrect
+    type ParserTextParseResultErrorTokenInvalid
 } from "@src/parser/text"
 
 export { parserWhitespace } from "@src/parser/whitespace"
